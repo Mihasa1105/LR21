@@ -13,13 +13,14 @@ public class StopwatchActivity extends AppCompatActivity {
 
     private int seconds = 0;  //В переменных seconds и running хранится количество прошедших секунд и флаг работы секундомера
     private boolean running;
-    private boolean WasRunning;
+    private boolean wasRunning;
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
         savedInstanceState.putInt("seconds", seconds);
         savedInstanceState.putBoolean("running", running);
+        savedInstanceState.putBoolean("WasRunning",wasRunning);
     }
 
     @Override
@@ -29,24 +30,35 @@ public class StopwatchActivity extends AppCompatActivity {
         if (savedInstanceState != null) {
             seconds = savedInstanceState.getInt("seconds");
             running = savedInstanceState.getBoolean("running");
+            wasRunning = savedInstanceState.getBoolean("WasRunning");
         }
         runTimer();
     }
 
+    @Override protected void onPause() {
+        super.onPause();
+        wasRunning = running;
+        running = false;
+    }
+
+    @Override protected void onResume() {
+        super.onResume();
+        if(wasRunning)running = true;
+    }
 
     public void onClickStart(View view) {//Вызывается при щелчке на кнопке Start
         running = true;  //Запустить секундомер
-        WasRunning = true;
+        wasRunning = true;
     }
 
     public void onClickStop(View view) {//Вызывается при щелчке на кнопке Stop
         running = false; //Остановить секундомер
-        WasRunning = false;
+        wasRunning = false;
     }
 
     public void onClickReset(View view) {//Вызывается при щелчке на кнопке Reset
         running = false;
-        WasRunning = false;
+        wasRunning = false;
         seconds = 0;//Остановить секундомер и присвоить счетчику секунд 0
     }
 
@@ -69,10 +81,7 @@ public class StopwatchActivity extends AppCompatActivity {
         });
     }
 
-    @Override protected void onStop() {
-        super.onStop();
-        if (!WasRunning) running = false;
-        else running = true;
-    }
-    
 }
+
+//if (!WasRunning)
+        //else running = true;
