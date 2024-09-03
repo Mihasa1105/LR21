@@ -1,4 +1,4 @@
-package com.example.lr21;
+package com.laba.lr21;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.example.lr21", appContext.getPackageName());
+        assertEquals("com.laba.lr21", appContext.getPackageName());
     }
 }

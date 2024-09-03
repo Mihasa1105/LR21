@@ -1,4 +1,4 @@
-package com.example.lr21;
+package com.laba.lr21;
 
 import org.junit.Test;
 
