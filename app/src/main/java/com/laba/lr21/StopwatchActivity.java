@@ -82,6 +82,3 @@ public class StopwatchActivity extends AppCompatActivity {
     }
 
 }
-
-//if (!WasRunning)
-        //else running = true;
